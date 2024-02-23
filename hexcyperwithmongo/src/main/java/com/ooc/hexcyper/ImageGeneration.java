@@ -22,7 +22,7 @@ public class ImageGeneration {
     private final String apiKey;
     private final String apiBase;
 
-    public ImageGeneration(@Value("${your.apiKey}") String apiKey, @Value("${your.apiBase}") String apiBase) {
+    public ImageGeneration(@Value("ng-sfnua0ea27avacOpoHoMr4vr9ArUm") String apiKey, @Value("${your.apiBase}") String apiBase) {
         this.apiKey = apiKey;
         this.apiBase = apiBase;
     }
