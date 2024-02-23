@@ -1,0 +1,34 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.2'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.ooc'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mongodb:mongodb-driver-sync:4.9.1'
+	implementation 'org.mongodb:mongodb-driver-core:4.9.1'
+	implementation 'javax.servlet:javax.servlet-api:4.0.1'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+
+	implementation 'com.google.code.gson:gson:2.8.9'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

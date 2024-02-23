@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>HexCyper</title>
+</head>
+<body>
+<div class="loader-container">
+    <svg viewBox=" 0 0 400 100">
+        <text x="50%" y="50%" dy=".32em" text-anchor="middle" class="text-body">
+            HexCyper
+        </text>
+        <text x="50%" y="50%" dy=".32em" dx="2.21em" text-anchor="middle" class="text-body">
+
+        </text>
+    </svg>
+</div>
+
+<div class="custom-cursor"></div>
+
+<section id="page-content">
+    <header>
+        <div class="logo">Hexcyper</div>
+        <div class="menu-btn">
+            <a href="login.html" class="login-btn">Login</a>
+            <a th:href="@{/index}" class="hexcyper-btn">Try Hexcyper</a>
+            <a href="signup.html" class="signup-btn">Signup</a>
+        </div>
+        </div>
+    </header>
+    <div class="main-container">
+        <div class="welcome-section">
+            <h1>Welcome to Hexcyper</h1>
+            <p>Empowering Student Innovation with AI Assistance!</p>
+        </div>
+    </div>
+
+    <main>
+        <!-- Your existing content here -->
+    </main>
+
+
+    <!-- <footer>
+    <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+    </footer> -->
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

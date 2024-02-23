@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <!-- Your head content -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Example</title>
+    <link rel="stylesheet" href="hexcyper.css">
+    <style>
+        /* Add your custom CSS styles here */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #333333;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .chat-window {
+            height: 400px; /* Adjust the height as needed */
+            overflow-y: auto; /* Enable vertical scrolling */
+            border-radius: 15px; /* Optional: Add border radius */
+            border-width: 0;
+            padding: 25px; /* Optional: Add padding */
+            margin-left: 15px;
+            margin-right: 15px;
+            background-color: #333333;
+
+        }
+
+        .chat-history {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            background-color: #100319;
+            border-radius: 15px;
+        }
+
+        .chat-history li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        .chat-history li strong {
+            font-weight: bold;
+            color: purple;
+        }
+
+        .chat-history li img {
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        .chat-history li .response {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Chat History</h1>
+<div class="chat-window">
+    <ul class="chat-history" th:each="entry : ${chatHistory}">
+        <li>
+            <strong th:text="${entry.getPrompt()}"></strong>
+            <span class="response" th:text="${entry.getResponse()}"></span>
+            <img th:if="${entry.getImage() != null}" th:src="${entry.getImage()}" alt="User Image" width="100">
+        </li>
+    </ul>
+</div>
+<form method="post" action="/" enctype="multipart/form-data">
+    <div style="align-content: center" class="input-box">
+        <input type="text" id="prompt" name="prompt" required>
+        <input type="file" id="image" name="image">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<script src="hexcyper.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var inputField = document.querySelector('input[type="text"]');
+        inputField.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                this.value += "\n";
+            }
+        });
+
+        var fileInput = document.getElementById("image");
+        fileInput.addEventListener("change", handleFileSelect, false);
+    });
+
+    function handleFileSelect(event) {
+        var files = event.target.files;
+        if (files.length > 0) {
+            var file = files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imgPreview = document.createElement("img");
+                imgPreview.src = e.target.result;
+                imgPreview.width = 100;
+                imgPreview.alt = "Preview Image";
+                document.getElementById("filePreview").innerHTML = ""; // Clear previous previews
+                document.getElementById("filePreview").appendChild(imgPreview);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>
